@@ -1,0 +1,31 @@
+<div class="container">
+    <h2>Lista de productos</h2>
+    <button class="btn btn-outline-primary mb-3" [routerLink]="['/productos/agregar']">Agregar producto</button>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">NOMBRE</th>
+                <th scope="col">PRECIO</th>
+                <th scope="col">IMAGEN</th>
+                <th scope="col">CATEGORIA</th>
+                <th scope="col">ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <th scope="row">{{product.productId}}</th>
+                <td>{{product.name}}</td>
+                <td>{{product.price | currency}}</td>
+                <td>
+                    <img src="{{product.image}}" alt="{{product.image}}" class="form-control col-sm-2" style="width: auto; height: 150px;">
+                </td>
+                <td>{{product.category.name}}</td>
+                <td>
+                    <button class="btn btn-outline-info me-2" [routerLink]="['/productos', product.productId]" >Editar</button>
+                    <button class="btn btn-outline-danger" (click)="deleteProduct(product.productId)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
